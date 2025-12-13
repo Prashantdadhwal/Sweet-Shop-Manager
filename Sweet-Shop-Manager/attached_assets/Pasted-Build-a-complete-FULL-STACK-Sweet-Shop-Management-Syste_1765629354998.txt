@@ -1,0 +1,84 @@
+Build a complete FULL-STACK Sweet Shop Management System website with the following specifications:
+
+### BACKEND (Node.js + Express)
+- Set up a RESTful API with Express.js and TypeScript
+- Use SQLite database (file-based, works on Replit)
+- Implement JWT-based authentication for secure endpoints
+- Database schema with Users and Sweets tables
+
+**Database Schema:**
+Users: id, email, password (hashed), role (user/admin), createdAt
+Sweets: id, name, category, price, quantity, imageUrl, description, adminId, createdAt
+
+**Required API Endpoints:**
+
+Authentication:
+- POST /api/auth/register - Register new user (user or admin)
+- POST /api/auth/login - Login and return JWT token
+
+Sweets Management (All require JWT):
+- GET /api/sweets - List all available sweets
+- GET /api/sweets/search?name=&category=&minPrice=&maxPrice= - Search/filter sweets
+- POST /api/sweets - Add new sweet (ADMIN ONLY)
+- PUT /api/sweets/:id - Update sweet details (ADMIN ONLY)
+- DELETE /api/sweets/:id - Delete sweet (ADMIN ONLY)
+
+Inventory:
+- POST /api/sweets/:id/purchase - Purchase sweet (decrease quantity, requires JWT)
+- POST /api/sweets/:id/restock - Restock sweet (increase quantity, ADMIN ONLY)
+
+**Requirements:**
+- All passwords must be hashed with bcrypt
+- Use JWT for protected endpoints
+- Include input validation for all endpoints
+- Add error handling middleware
+- CORS enabled for frontend communication
+- Image upload support (store image URLs or base64)
+
+### FRONTEND (React + Vite)
+- Build a modern, responsive single-page application
+- Use React Router for navigation
+- State management with Context API or Redux
+- Store JWT token in localStorage
+
+**Pages/Components:**
+
+1. Authentication Pages:
+   - Register page (user can choose user or admin role)
+   - Login page with email and password
+   - Logout functionality
+
+2. User Dashboard:
+   - Display all available sweets in a grid/card layout
+   - Show sweet name, image, price, category, quantity in stock
+   - Search bar with filters (by name, category, price range)
+   - Purchase button for each sweet (disabled if quantity = 0)
+   - Show confirmation message after purchase
+   - View purchase history
+
+3. Admin Dashboard (Admin Only):
+   - Add new sweet form (name, category, price, quantity, image upload, description)
+   - Edit sweet form (update any sweet details)
+   - Delete sweet button with confirmation
+   - View all sweets in a table/list format
+   - Restock sweet form (increase quantity)
+   - Dashboard showing total sweets, total inventory value
+
+**Design Requirements:**
+- Responsive design (mobile, tablet, desktop)
+- Clean, modern UI with consistent color scheme
+- Loading states and error messages
+- Success notifications for actions
+- Navigation bar with user info and logout
+- Sweet product cards with images
+
+### Technical Stack:
+- Backend: Node.js, Express, TypeScript
+- Database: SQLite
+- Frontend: React, Vite, React Router
+- Authentication: JWT (jsonwebtoken)
+- Password hashing: bcrypt
+- HTTP client: Fetch API
+- Styling: CSS/Tailwind CSS (optional)
+
+### Folder Structure:
